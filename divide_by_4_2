@@ -1,0 +1,36 @@
+///100 days of RTL///
+
+///Abilash P///
+
+///Frequency divison by 4///
+
+module divideby2 (clk, rst, out);
+  input clk;
+  input rst;
+  output reg out;
+  
+  always @(posedge clk)
+    begin
+      if (rst)
+        begin
+          out <= 0;
+        end
+      else 
+        begin
+          out <= ~out;
+        end
+    end
+  
+endmodule
+
+
+module divideby4 (clk,rst,out);
+  input clk,rst;
+  output reg out;
+  
+  reg out1;
+  
+  divideby2 D1 (.clk(clk), .rst(rst), .out(out1));
+  divideby2 D2 (.clk(~out1), .rst(rst), .out(out));
+  
+endmodule
